@@ -11,7 +11,7 @@ pipeline {
                     cd 01-vpc
                     ls -ltr
                     pwd
-                    terraform init
+                    terraform init -lock=false
                 '''
             }
         }
@@ -21,16 +21,11 @@ pipeline {
                     ls -ltr
                     pwd
                     cd 01-vpc
-                    terraform plan
+                    terraform plan -lock=false
                 '''
             }
         }
-        stage('Approve') {
-            steps{
-                input "Shall I apply?"
-            }
-        }
-
+       
         stage('Apply') {
             steps{
                 
@@ -38,7 +33,7 @@ pipeline {
                     pwd
                     ls -ltr
                     cd 01-vpc
-                    terraform apply -auto-approve
+                    terraform apply -auto-approve -lock=false
                 '''
             }
         }
