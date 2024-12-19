@@ -11,7 +11,7 @@ pipeline {
                     cd 01-vpc
                     ls -ltr
                     pwd
-                    terraform init -lock=false
+                    terraform init -reconfigure -lock=false
                 '''
             }
         }
